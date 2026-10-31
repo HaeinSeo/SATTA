@@ -1,0 +1,6 @@
+-r requirements.txt
+# Tested optional merge stack. Install the appropriate CPU/CUDA torch build
+# for your machine before running this file if needed.
+torch==2.11.0
+torchvision==0.26.0
+sahi==0.12.8

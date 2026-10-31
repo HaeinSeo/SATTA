@@ -1,0 +1,17 @@
+{
+  "scene_a.png": {
+    "width": 200,
+    "height": 120,
+    "boxes": [[10, 10, 20, 20, 0], [50, 10, 90, 50, 1]]
+  },
+  "scene_b.png": {
+    "width": 200,
+    "height": 120,
+    "boxes": [[10, 10, 26, 26, 0]]
+  },
+  "empty.png": {
+    "width": 200,
+    "height": 120,
+    "boxes": []
+  }
+}

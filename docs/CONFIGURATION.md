@@ -1,4 +1,4 @@
-# Shared SATTA configuration
+# SATTA configuration
 
 The complete executable preset is [configs/default.json](../configs/default.json), matching the dataclass in `satta/satta.py`. SATTA receives global and tiled candidates in original-image coordinates and uses **predicted boxes only** for routing. It does not access GT sizes or labels during selection.
 
@@ -37,5 +37,17 @@ For the shared study preset, detector candidate generation used input confidence
 The optional selector preserves the original Torchvision NMS calculation; ties can depend on the installed NMS implementation/device. The included examples run on CPU. Learned detector weights, inference resizing, internal maxDets and pre-NMS filtering also affect the candidate population and cannot be reconstructed from configuration values alone.
 
 ## Configuration variants
+
+The model-specific settings used in the separate validation-calibrated analysis are also included:
+
+| Detector | Frozen configuration |
+|---|---|
+| Faster R-CNN R50 | [validation/faster-rcnn-r50.json](../configs/validation/faster-rcnn-r50.json) |
+| Cascade Swin-T | [validation/cascade-swin-t.json](../configs/validation/cascade-swin-t.json) |
+| DINO R50 | [validation/dino-r50.json](../configs/validation/dino-r50.json) |
+
+These alternatives were selected on 548 VisDrone validation images and belong to a separate model-specific experiment. They do not establish transfer of the shared preset. Faster R-CNN uses a 20px inference routing boundary; **evaluation XS remains <=16px**. DINO uses a raw candidate floor of 0.10, so comparisons must account for the changed operating point. The files contain selection parameters, not detector checkpoints or an inference recipe.
+
+For example, replace `--satta-cfg configs/default.json` with `--satta-cfg configs/validation/dino-r50.json` in the candidate-selection command. The report records the complete selected configuration; the SAHI reference settings remain separate.
 
 To study a new policy, create a separate JSON file and pass `--satta-cfg path.json`. The resulting report includes every selected value. Select parameters on validation data and freeze them before test evaluation. A per-detector calibrated policy is a different experiment from transferring this common preset across detectors. Disabling a component exposes its effect but does not prove an independent causal contribution when components interact.

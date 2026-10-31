@@ -48,7 +48,7 @@ python evaluate.py --candidates examples/candidates.json --gt examples/gt.json -
 
 No detector runs here. Candidate boxes must already be mapped to original-image coordinates, and each tile prediction needs its normalized in-tile center. The selection uses no ground-truth size. SAHI merging calls the SAHI library's class-wise NMS with IoU 0.5; SATTA uses Torchvision class-wise NMS after score adjustment. The core metrics stay available without either dependency.
 
-The shared [SATTA configuration](configs/default.json) and [full equations and settings](docs/CONFIGURATION.md) are included. Detector-specific validation calibration is a separate experiment, not this shared preset. Pickle caches are deliberately not accepted by this public CLI; export their numeric content to the documented JSON schema in a trusted environment.
+The shared [SATTA configuration](configs/default.json), three [validation-calibrated alternatives](configs/validation), and [full equations and settings](docs/CONFIGURATION.md) are included. Detector-specific validation calibration is a separate experiment from this shared preset. Pickle caches are deliberately not accepted by this public CLI; export their numeric content to the documented JSON schema in a trusted environment.
 
 ## Reproduction scope
 
@@ -66,6 +66,7 @@ The tested local stack is Python 3.14.4, NumPy 2.4.6, and, for optional merging,
 | `satta/baselines.py` | Global filtering and optional SAHI-library merge |
 | `satta/io.py` | Strict JSON input validation and portable output |
 | `configs/default.json` | Complete shared preset |
+| `configs/validation/` | Frozen alternatives for the separate model-specific calibration |
 | `docs/` | Input, metric, taxonomy, and configuration definitions |
 | `examples/` | Small synthetic inputs; no real images or benchmark annotations |
 | `tests/` | Matching, boundary, denominator, CLI, and configuration regressions |

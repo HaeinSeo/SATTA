@@ -1,0 +1,20 @@
+{
+  "xs_max": 16.0,
+  "s_max": 32.0,
+  "m_max": 96.0,
+  "boost_small_tile": 1.15,
+  "boost_large_global": 1.0,
+  "penalty_large_tile": 1.15,
+  "gamma": 0.65,
+  "margin": 0.04,
+  "tau_xs": 0.055,
+  "tau_s": 0.12,
+  "tau_m": 0.12,
+  "tau_l": 0.12,
+  "cand_conf": 0.1,
+  "nms_iou": 0.5,
+  "use_source_size": true,
+  "use_boundary": true,
+  "use_threshold": true,
+  "base_conf": 0.03
+}
